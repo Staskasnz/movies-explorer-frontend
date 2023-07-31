@@ -1,0 +1,68 @@
+.header-movie {
+    min-height: 74px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-movie__account-container {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.header-movie__account-link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #000;
+    text-decoration: none;
+}
+
+.header-movie__icon {
+    display: block;
+}
+
+.header-movie__icon-link {
+    display: flex;
+    border-radius: 4px;
+    background: #F9F9F9;
+    min-width: 26px;
+    min-height: 30px;
+    justify-content: center;
+}
+
+
+.header-movie__routes {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: 60px;
+}
+
+.header-movie__saved-movies,
+.header-movie__movies {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #000;
+    text-decoration: none;
+}
+
+.header-movie__saved-movies_active,
+.header-movie__movies_active {
+    font-weight: 500;
+}
+
+.header-movie__saved-movies.active {
+    font-size: 18px;
+}
+
+@media screen and (max-width:1000px) {
+    .header-movie__saved-movies,
+    .header-movie__movies,
+    .header-movie__account-container {
+        display: none;
+    }
+}
+

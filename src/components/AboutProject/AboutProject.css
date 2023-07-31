@@ -1,0 +1,122 @@
+.about-project__title {
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+    margin: 110px 0px 23px;
+}
+
+.about-project__grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    margin-top: 70px;
+}
+
+.about-project__grid-container__text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 0;
+}
+
+.about-project__grid-container__title {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+    margin: 0;
+    margin-bottom: 26px;
+}
+
+.about-project__grid-container-2 {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin-top: 110px;
+    grid-gap: 14px 0px;
+}
+
+.about-project__grid-container-2__first-week {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    margin: 0;
+    background: #2BE080;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.about-project__grid-container-2__four-week {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F2F2F2;
+}
+
+.about-project__grid-container-2__programming {
+    color: #A0A0A0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    margin: 0;
+}
+
+@media screen and (max-width:1000px) {
+    .about-project__title {
+        margin-top: 90px;
+    }
+
+    .about-project__grid-container__text {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    .about-project__grid-container-2 {
+        margin-top: 93px;
+    }
+}
+
+@media screen and (max-width:560px) {
+    .about-project__title {
+        margin: 70px 0 28px;
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+
+    .about-project__grid-container {
+        margin-top: 60px;
+        grid-template-columns: 1fr;
+        grid-gap: 56px;
+    }
+
+    .about-project__grid-container__title {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+        margin-bottom: 16px;
+    }
+
+    .about-project__grid-container__text {
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 20px;
+        margin: 0;
+    }
+
+    .about-project__grid-container-2 {
+        margin-top: 60px;
+        grid-gap: 10px 0px;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .about-project__grid-container-2__first-week,
+    .about-project__grid-container-2__four-week,
+    .about-project__grid-container-2__programming
+     {
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,8 @@
+.portfolio__link-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.portfolio__link-box:last-child {
+    margin-bottom: 125px;
+}
