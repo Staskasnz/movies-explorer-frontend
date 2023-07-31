@@ -1,0 +1,233 @@
+.burger {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+}
+
+.burger__button {
+    width: 60px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 5;
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.line {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: #000;
+    stroke-width: 5.5;
+    stroke-linecap: round;
+}
+
+.burger__top {
+    stroke-dasharray: 40 160;
+}
+
+.burger__middle {
+    transform-origin: 50%;
+    transition: transform 400ms;
+}
+
+.burger__bottom {
+    stroke-dasharray: 40 85;
+    transform-origin: 50%;
+    transition: transform 400ms, stroke-dashoffset 400ms;
+}
+
+.burger__top_active {
+    stroke-dashoffset: -64px;
+}
+
+.burger__middle_active {
+    stroke-dashoffset: -20px;
+    transform: rotate(90deg);
+}
+
+.burger__bottom_active {
+    stroke-dashoffset: -64px;
+}
+
+.burger__menu {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    min-width: 520px;
+    height: 100vh;
+    background: #FFF;
+    transition: right 0.3s ease;
+    /* Анимация выезда меню */
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.burger__menu-open {
+    right: 0;
+    /* Когда меню открыто, устанавливаем правый отступ на 0, чтобы показать меню */
+}
+
+.burger__overlay {
+    z-index: -10;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    transition-delay: .1s;
+}
+
+.burger__overlay_active {
+    z-index: 1;
+
+}
+
+.burger__overlay-color {
+    z-index: -10;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+}
+
+.burger__overlay-color_active {
+    z-index: 1;
+    opacity: .3;
+    animation: fadeInOut .4s ease;
+    /* Анимация для плавного появления и исчезновения */
+}
+
+.burger__account-container {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin-bottom: 92px;
+}
+
+.burger__account-link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #000;
+    text-decoration: none;
+}
+
+.burger__icon {
+    display: block;
+}
+
+.burger__icon-link {
+    display: flex;
+    border-radius: 4px;
+    background: #F9F9F9;
+    min-width: 26px;
+    min-height: 30px;
+    justify-content: center;
+}
+
+
+.burger__routes {
+    display: flex;
+    gap: 28px;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 159px;
+}
+
+.burger__saved-movies,
+.burger__movies,
+.burger__to-main {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: none;
+    color: #000;
+    text-decoration: none;
+    position: relative;
+}
+
+.burger__saved-movies::after,
+.burger__movies::after,
+.burger__to-main::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    /* Задайте отрицательное значение для отступа вниз, чтобы опустить подчеркивание ниже стандартного расположения */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    /* Задайте толщину подчеркивания */
+    background-color: #000;
+    /* Цвет подчеркивания */
+    opacity: 0.5;
+    /* Настройте прозрачность подчеркивания */
+    transform: scaleX(0);
+    /* Начальное значение ширины подчеркивания (0 - скрыто) */
+    transform-origin: left;
+    /* Определите точку, от которой будет растягиваться подчеркивание */
+    transition: transform 0.2s ease;
+    /* Анимация для плавного перехода */
+}
+
+.burger__saved-movies:hover::after,
+.burger__movies:hover::after,
+.burger__to-main:hover::after,
+.burger__saved-movies_active::after,
+.burger__movies_active::after {
+    transform: scaleX(1);
+    /* При наведении подчеркивание будет растягиваться до 100% */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: .3;
+    }
+}
+
+@media screen and (min-width:1001px) {
+    .burger {
+        display: none;
+    }
+}
+
+@media screen and (max-width:560px) {
+    .burger__menu {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .burger__overlay-color {
+        display: none;
+    }
+
+    .burger__routes {
+        gap: 24px;
+        margin-top: 144px;
+    }
+
+    .burger__account-container {
+        margin-bottom: 48px;
+    }
+
+    .burger__button {
+        width: 55px;
+    }
+
+
+}

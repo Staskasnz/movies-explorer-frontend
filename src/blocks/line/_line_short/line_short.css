@@ -1,0 +1,9 @@
+.line_short {
+    min-width: 410px;
+}
+
+@media screen and (max-width:560px) {
+    .line_short {
+        min-width: 260px;
+    }
+}
