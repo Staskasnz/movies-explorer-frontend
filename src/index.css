@@ -7,5 +7,9 @@
 @import url(./blocks/line/_opacity-color/line_opacity-color.css);
 @import url(./blocks/line/_line_short/line_short.css);
 
+@import url(./blocks/input-error/input-error.css);
+
 @import url(./blocks/button/button.css);
 @import url(./blocks/link/link.css);
+
+@import url(./blocks/search-error/search-error.css);

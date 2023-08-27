@@ -8,7 +8,7 @@ function Header(props) {
 
   return (
     <>
-      {location.pathname === '/' && <HeaderMain />}
+      {location.pathname === '/' ? props.loggedIn ? <HeaderMovie /> : <HeaderMain /> : ''}
       {['/movies', '/saved-movies', '/profile'].includes(location.pathname) && <HeaderMovie />}
     </>
   )

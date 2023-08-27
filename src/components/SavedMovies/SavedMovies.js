@@ -1,19 +1,28 @@
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
-import './SavedMovies.css';
 
-function SavedMovies(props) {
+function SavedMovies({ isChecked, isPreloader, handleCheckedChange, handleInputChange, toggleChecked, savedMovieCards, searchInput, notFound, searchError, deleteMovie, onSearchMovies }) {
 
     return (
         <main className="content">
-            <SearchForm />
-            <FilterCheckbox />
-            <div className="line line_opacity-color"></div>
-            <MoviesCardList
-                cards={props.movieCards}
+            <SearchForm
+                onSearchMovies={onSearchMovies}
+                searchInput={searchInput}
+                handleInputChange={handleInputChange}
             />
-            {/* <Preloader /> */}
+            <FilterCheckbox
+                isChecked={isChecked}
+                handleCheckedChange={handleCheckedChange}
+                toggleChecked={toggleChecked}
+            />
+            <div className="line line_opacity-color"></div>
+            <MoviesCardList cards={savedMovieCards} deleteMovie={deleteMovie} />
+            {isPreloader && <Preloader />}
+            {notFound && <p className="not-found">Ничего не найдено</p>}
+            {searchError && <p className="search-error">Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен.
+                Подождите немного и попробуйте ещё раз</p>}
         </main>
     )
 

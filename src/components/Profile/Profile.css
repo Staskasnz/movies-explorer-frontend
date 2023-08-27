@@ -25,11 +25,20 @@
     line-height: normal;
 }
 
-.profile__username {
+.profile__username,
+.profile__useremail {
     margin: 0;
     font-size: 11px;
     font-weight: 400;
     line-height: normal;
+    border: none;
+    text-align: end;
+}
+
+.profile__username:disabled,
+.profile__useremail:disabled {
+    color: black;
+    background: none;
 }
 
 .profile__email-container {
@@ -46,13 +55,6 @@
     line-height: normal;
 }
 
-.profile__useremail {
-    margin: 0;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: normal;
-}
-
 .profile__edit-button {
     font-size: 13px;
     font-weight: 400;
@@ -60,7 +62,55 @@
     border: none;
     background: none;
     cursor: pointer;
-    margin-bottom: 16px;
+}
+
+.profile__edit-button_inactive {
+    display: none;
+}
+
+.profile__save-button_visible {
+    min-width: 396px;
+    min-height: 45px;
+    border-radius: 3px;
+    background: #3456F3;
+    border: none;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.profile__save-button_inactive {
+    min-width: 396px;
+    min-height: 45px;
+    border-radius: 3px;
+    background: #3456F3;
+    border: none;
+    color: #C2C2C2;;
+    font-size: 14px;
+    font-weight: 500;
+    pointer-events: none; /* Запрет клика по кнопке */
+    cursor: not-allowed;
+    background: #F8F8F8;;
+}
+
+.profile__save-button_unvisible {
+    display: none;
+}
+
+.profile__error {
+    position: absolute;
+    margin: 0;
+    line-height: 10px;
+    min-width: 410px;
+    margin-top: 19px;
+    text-align: end;
+}
+
+.profile__request-error {
+
+    margin: 0;
+    margin-top: 19px;
 }
 
 .profile__exit-button {
@@ -72,6 +122,10 @@
     background: none;
     cursor: pointer;
     margin-bottom: 16px;
+}
+
+.profile__exit-button_inactive {
+    display: none;
 }
 
 @media screen and (max-width:1000px) {
@@ -97,5 +151,9 @@
 
     .profile__email-container {
         margin-bottom: 379px;
+    }
+
+    .profile__error {
+        min-width: 260px;
     }
 }
