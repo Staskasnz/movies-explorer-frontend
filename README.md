@@ -2,9 +2,9 @@
 https://film-world.nomoredomainsicu.ru
 
 ## Api:
-film.nomoredomains.work
+https://film.nomoredomains.work
 
-## pull-request:
+### pull-request:
 https://github.com/Staskasnz/movies-explorer-frontend/pull/2
 
 ## Ссылка на макет фигмы:
