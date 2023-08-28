@@ -20,7 +20,7 @@ function MoviesCardList(props) {
                 } else if (window.innerWidth >= 768) {
                     setVisibleMovies(8);
                 } else if (window.innerWidth >= 320) {
-                    setVisibleMovies(4);
+                    setVisibleMovies(5);
                 }
             }, 300);
         }

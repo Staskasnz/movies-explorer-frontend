@@ -80,6 +80,10 @@
     cursor: pointer;
 }
 
+.profile__save-button_sucsess {
+    background: #0fb40f;
+}
+
 .profile__save-button_inactive {
     min-width: 396px;
     min-height: 45px;
@@ -111,6 +115,25 @@
 
     margin: 0;
     margin-top: 19px;
+}
+
+.profile__sucsess-message {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+    position: fixed;
+    background-color: #70db70;
+    bottom: -48px; /* Скрыт за пределами видимости */
+    left: 0;
+    right: 0;
+    padding-top: 15px;
+    text-align: center;
+    min-height: 33px;
+    transition: bottom 0.2s ease-in-out; /* Добавляем анимацию */
+}
+
+.profile__sucsess-message_visible {
+    bottom: 0; /* Показываем сообщение */
 }
 
 .profile__exit-button {

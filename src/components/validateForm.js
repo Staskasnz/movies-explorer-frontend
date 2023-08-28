@@ -33,7 +33,7 @@ export function useFormWithValidation() {
         setValues({
             name: currentUser.name,
             email: currentUser.email,
-          });
+        });
     }
 
     const setApiErrorFoo = (value) => {
@@ -55,7 +55,7 @@ export function useFormWithValidation() {
         setValues((prevValues) => {
             setApiError(false);
             const updatedValues = { ...prevValues, [name]: value };
-            
+
             // Проверяем валидность всех полей, включая текущее поле
             const isFormValid = Object.keys(updatedValues).every((fieldName) => {
                 if (fieldName === 'name') {
@@ -66,12 +66,16 @@ export function useFormWithValidation() {
                 // Другие поля валидны по умолчанию
                 return true;
             });
-    
-            setIsValid(isFormValid && target.closest("form").checkValidity());
+
+            // Проверяем, были ли внесены изменения в поля и хотя бы одно поле валидно
+            const isDataChanged = currentUser.name !== updatedValues.name || currentUser.email !== updatedValues.email;
+            const isValidAndChanged = isFormValid && isDataChanged;
             
+            setIsValid(isValidAndChanged && target.closest("form").checkValidity());
+
             return updatedValues; // Возвращаем обновленные значения
         });
-    
+
         if (name === 'name') {
             if (!validateName(value)) {
                 setErrors((prevErrors) => ({ ...prevErrors, [name]: 'Введите корректное имя' }));
@@ -100,5 +104,5 @@ export function useFormWithValidation() {
         [setValues, setErrors, setIsValid]
     );
 
-        return { values, handleChange, errors, isValid, resetForm, apiError, setApiErrorFoo, setValuesFoo, setIsValidFoo };
+    return { values, handleChange, errors, isValid, resetForm, apiError, setApiErrorFoo, setValuesFoo, setIsValidFoo };
 }

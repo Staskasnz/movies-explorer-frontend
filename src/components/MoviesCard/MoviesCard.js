@@ -41,7 +41,7 @@ function MoviesCard(props) {
             <div className="movie-card">
                 <div className="movie-card__info">
                     <h2 className="movie-card__title">{props.card.nameRU}</h2>
-                    <p className="movie-card__duration">{props.card.duration} минут</p>
+                    <p className="movie-card__duration">{`${Math.floor(props.card.duration / 60) > 0 ? `${Math.floor(props.card.duration / 60)} ч ${props.card.duration % 60} мин` : `${props.card.duration % 60} мин`}`}</p>
                 </div>
                 <a href={props.card.trailerLink} target="_blank" className="movie-card__link">
                     <img src={location.pathname === '/movies' ? `https://api.nomoreparties.co${props.card.image.url}` : props.card.image}
