@@ -10,6 +10,7 @@ function Register(props) {
     function handleSubmit(evt) {
         evt.preventDefault();
         if (isValid) {
+            props.handleIsSubmiting(true);
             props.onRegister({
                 name: values.name,
                 password: values.password,
@@ -25,18 +26,18 @@ function Register(props) {
             <h3 className="register__title">Добро пожаловать!</h3>
             <form className="register__form" name="registerForm" onSubmit={handleSubmit}>
                 <p className="register__label">Имя</p>
-                <input type="text" name="name" minLength="2" maxLength="30"
+                <input disabled={props.isSubmitting} type="text" name="name" minLength="2" maxLength="30"
                     id="name" className="register__input" required onChange={handleChange} />
                 <p className="register__error input-error">{errors.name}</p>
                 <p className="register__label">E-mail</p>
-                <input type="email" name="email" className="register__input"
+                <input disabled={props.isSubmitting} type="email" name="email" className="register__input"
                     minLength="2" maxLength="30" required onChange={handleChange} />
                 <p className="register__error input-error">{errors.email}</p>
                 <p className="register__label">Пароль</p>
-                <input type="password" name="password" minLength="5" maxLength="30"
+                <input disabled={props.isSubmitting} type="password" name="password" minLength="5" maxLength="30"
                     id="link" className="register__input" required onChange={handleChange} />
                 <p className="register__error input-error">{errors.password}</p>
-                <button className={`${isValid ? "register__save-button" : "register__save-button_inactive"}  button`}
+                <button disabled={props.isSubmitting} className={`${isValid ? "register__save-button" : "register__save-button_inactive"}  button`}
                     type="submit">Зарегистрироваться</button>
                 <p className="register__request-error input-error">{apiError ? props.requestError : ''}</p>
                 <Link to='/signin' className="register__to-login link">Уже зарегистрированы?

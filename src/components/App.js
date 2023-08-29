@@ -16,6 +16,7 @@ import { mainApi } from '../utils/MainApi.js';
 import ProtectedRoute from './ProtectedRoute.js';
 import { CurrentUserContext } from '../context/CurrentUserContext.js';
 import AuthRoute from './AuthRoute.js';
+import { SHORT_FILM_DURATION } from '../config/config.js';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
   const [requestError, setRequestError] = useState('');
   const [currentUser, setCurrentUser] = useState({});
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const navigate = useNavigate();
 
@@ -49,7 +51,7 @@ function App() {
     if (location.pathname === "/movies") {
       if (isChecked) {
         if (cards) {
-          const cardsShort = cards.filter((movie) => movie.duration <= 40);
+          const cardsShort = cards.filter((movie) => movie.duration <= SHORT_FILM_DURATION);
           if (cardsShort) {
             setCards(cardsShort)
             if (cardsShort.length === 0) {
@@ -65,7 +67,7 @@ function App() {
     if (location.pathname === "/saved-movies") {
       if (isChecked) {
         if (savedCards) {
-          const cardsShort = savedCards.filter((movie) => movie.duration <= 40);
+          const cardsShort = savedCards.filter((movie) => movie.duration <= SHORT_FILM_DURATION);
           if (cardsShort) {
             setSavedCards(cardsShort)
             if (cardsShort.length === 0) {
@@ -108,13 +110,14 @@ function App() {
   function handleRegister(userData) {
     mainApi.signUp(userData)
       .then(() => {
-        handleLogin(userData)
+        handleLogin(userData);
         setRequestError('');
       })
       .catch((err) => {
         console.log(err.data.message);
         setRequestError(err.data.message);
       })
+      .finally(() => setIsSubmitting(false))
   }
 
   function handleLogin(userData) {
@@ -129,6 +132,7 @@ function App() {
         console.log(err);
         setRequestError(err.data.message);
       })
+      .finally(() => setIsSubmitting(false))
   }
 
   function handleSearchMovies({ input }) {
@@ -153,7 +157,7 @@ function App() {
       }
 
       if (isChecked) {
-        const inputFilterShort = inputFilter.filter((movie) => movie.duration <= 40);
+        const inputFilterShort = inputFilter.filter((movie) => movie.duration <= SHORT_FILM_DURATION);
         setCards(inputFilterShort);
         if (inputFilterShort.length === 0) {
           searchNotFound(true);
@@ -163,11 +167,11 @@ function App() {
       }
       setIsPreloader(false);
       localStorage.setItem('result-cards', JSON.stringify(inputFilter));
-
+      setIsSubmitting(false);
     } else {
       moviesApi.getCardInfo()
         .then((data) => {
-
+          console.log(isSubmitting);
           localStorage.setItem('api-cards', JSON.stringify(data));
 
           const inputFilter = data.filter((movie) => movie.nameRU.toLowerCase().includes(input.toLowerCase()) ||
@@ -180,7 +184,7 @@ function App() {
           }
 
           if (isChecked) {
-            const inputFilterShort = inputFilter.filter((movie) => movie.duration <= 40);
+            const inputFilterShort = inputFilter.filter((movie) => movie.duration <= SHORT_FILM_DURATION);
             setCards(inputFilterShort);
             if (inputFilterShort.length === 0) {
               searchNotFound(true);
@@ -199,6 +203,8 @@ function App() {
         })
         .finally(() => {
           setIsPreloader(false);
+          setIsSubmitting(false);
+          console.log(isSubmitting);
         })
     }
   }
@@ -219,7 +225,7 @@ function App() {
     }
 
     if (isChecked) {
-      const inputFilterShort = inputFilter.filter((movie) => movie.duration <= 40);
+      const inputFilterShort = inputFilter.filter((movie) => movie.duration <= SHORT_FILM_DURATION);
       setSavedCards(inputFilterShort);
       if (inputFilterShort.length === 0) {
         searchNotFound(true);
@@ -228,6 +234,7 @@ function App() {
       setSavedCards(inputFilter);
     }
     setIsPreloader(false);
+    setIsSubmitting(false);
   }
 
   function getSavedMovies() {
@@ -268,9 +275,12 @@ function App() {
         console.log(err);
         setRequestError(err.data.message);
       })
-      .finally(() => setTimeout(() => {
-        setIsSuccess(false);
-      }, 1500));
+      .finally(() => {
+        setIsSubmitting(false);
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 1500)
+      });
   }
 
   function handleCheckedChange() {
@@ -296,9 +306,14 @@ function App() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('isChecked');
     localStorage.removeItem('searchInput');
-    localStorage.removeItem('cards');
+    localStorage.removeItem('result-cards');
+    localStorage.removeItem('api-cards');
     setLoggedIn(false);
     navigate('/', { replace: true });
+  }
+
+  function handleIsSubmiting(bool) {
+    setIsSubmitting(bool);
   }
 
   return (
@@ -326,6 +341,8 @@ function App() {
             checkingAuth={checkingAuth}
             deleteMovie={hanleDeleteMovie}
             savedMoviesLoaded={savedMoviesLoaded}
+            isSubmitting={isSubmitting}
+            handleIsSubmiting={handleIsSubmiting}
           />
           } />
           <Route path="/saved-movies" element={<ProtectedRoute element={SavedMovies}
@@ -343,6 +360,8 @@ function App() {
             checkingAuth={checkingAuth}
             deleteMovie={hanleDeleteMovie}
             savedMoviesLoaded={savedMoviesLoaded}
+            isSubmitting={isSubmitting}
+            handleIsSubmiting={handleIsSubmiting}
           />} />
           <Route path="/profile" element={<ProtectedRoute element={Profile}
             isSuccess={isSuccess}
@@ -352,9 +371,23 @@ function App() {
             onUpdate={handleUpdateUser}
             requestError={requestError}
             handleSignOut={handleSignOut}
+            isSubmitting={isSubmitting}
+            handleIsSubmiting={handleIsSubmiting}
           />} />
-          <Route path="/signup" element={<AuthRoute element={Register} loggedIn={loggedIn} onRegister={handleRegister} requestError={requestError} />} />
-          <Route path="/signin" element={<AuthRoute element={Login} loggedIn={loggedIn} onLogin={handleLogin} requestError={requestError} />} />
+          <Route path="/signup" element={<AuthRoute element={Register}
+            loggedIn={loggedIn}
+            onRegister={handleRegister}
+            requestError={requestError} 
+            isSubmitting={isSubmitting}
+            handleIsSubmiting={handleIsSubmiting} 
+            />} />
+          <Route path="/signin" element={<AuthRoute element={Login}
+            loggedIn={loggedIn}
+            onLogin={handleLogin}
+            requestError={requestError}
+            isSubmitting={isSubmitting} 
+            handleIsSubmiting={handleIsSubmiting} 
+            />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
 

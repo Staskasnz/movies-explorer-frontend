@@ -3,7 +3,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 import SearchForm from '../SearchForm/SearchForm';
 
-function SavedMovies({ isChecked, isPreloader, handleCheckedChange, handleInputChange, toggleChecked, savedMovieCards, searchInput, notFound, searchError, deleteMovie, onSearchMovies }) {
+function SavedMovies({ handleIsSubmiting, isChecked, isPreloader, handleCheckedChange, handleInputChange, toggleChecked, savedMovieCards, searchInput, notFound, searchError, deleteMovie, onSearchMovies, isSubmitting }) {
 
     return (
         <main className="content">
@@ -11,6 +11,8 @@ function SavedMovies({ isChecked, isPreloader, handleCheckedChange, handleInputC
                 onSearchMovies={onSearchMovies}
                 searchInput={searchInput}
                 handleInputChange={handleInputChange}
+                isSubmitting={isSubmitting}
+                handleIsSubmiting={handleIsSubmiting}
             />
             <FilterCheckbox
                 isChecked={isChecked}

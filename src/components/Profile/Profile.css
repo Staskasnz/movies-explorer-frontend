@@ -122,6 +122,7 @@
     font-weight: 400;
     line-height: normal;
     position: fixed;
+    color: white;
     background-color: #70db70;
     bottom: -48px; /* Скрыт за пределами видимости */
     left: 0;

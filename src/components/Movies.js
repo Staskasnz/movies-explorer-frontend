@@ -3,7 +3,7 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Preloader from "./Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
 
-function Movies({ onSearchMovies, isChecked, isPreloader, handleCheckedChange, handleInputChange, toggleChecked, movieCards, searchInput, notFound, searchError, saveMovie, deleteMovie, savedCards }) {
+function Movies({ handleIsSubmiting, onSearchMovies, isChecked, isPreloader, handleCheckedChange, handleInputChange, toggleChecked, movieCards, searchInput, notFound, searchError, saveMovie, deleteMovie, savedCards, isSubmitting }) {
 
     return (
         <main className="content">
@@ -11,6 +11,8 @@ function Movies({ onSearchMovies, isChecked, isPreloader, handleCheckedChange, h
                 onSearchMovies={onSearchMovies}
                 searchInput={searchInput}
                 handleInputChange={handleInputChange}
+                isSubmitting={isSubmitting}
+                handleIsSubmiting={handleIsSubmiting}
             />
             <FilterCheckbox
                 isChecked={isChecked}
@@ -18,7 +20,7 @@ function Movies({ onSearchMovies, isChecked, isPreloader, handleCheckedChange, h
                 toggleChecked={toggleChecked}
             />
             <div className="line line_opacity-color"></div>
-            <MoviesCardList cards={movieCards} savedCards={savedCards} saveMovie={saveMovie} deleteMovie={deleteMovie}/>
+            <MoviesCardList cards={movieCards} savedCards={savedCards} saveMovie={saveMovie} deleteMovie={deleteMovie} />
             {isPreloader && <Preloader />}
             {notFound && <p className="not-found">Ничего не найдено</p>}
             {searchError && <p className="search-error">Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен.

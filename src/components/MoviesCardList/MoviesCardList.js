@@ -2,25 +2,35 @@ import { useEffect, useState } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 import { useLocation } from 'react-router-dom';
+import {
+    SCREEN_BREAKPOINT_SMALL, 
+    SCREEN_BREAKPOINT_MEDIUM, 
+    SCREEN_BREAKPOINT_LARGE,
+    MOVIES_PER_PAGE_SMALL, 
+    MOVIES_PER_PAGE_MEDIUM,
+    MOVIES_PER_PAGE_LARGE,
+    MOVIES_ADD_TWO,
+    MOVIES_ADD_THREE,
+} from '../../config/config.js';
 
 
 
 function MoviesCardList(props) {
 
     const [visibleMovies, setVisibleMovies] = useState(12);
-    
+
     const location = useLocation();
 
     useEffect(() => {
         function handleResize() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                if (window.innerWidth >= 1280) {
-                    setVisibleMovies(12);
-                } else if (window.innerWidth >= 768) {
-                    setVisibleMovies(8);
-                } else if (window.innerWidth >= 320) {
-                    setVisibleMovies(5);
+                if (window.innerWidth >= SCREEN_BREAKPOINT_LARGE) {
+                    setVisibleMovies(MOVIES_PER_PAGE_LARGE);
+                } else if (window.innerWidth >= SCREEN_BREAKPOINT_MEDIUM) {
+                    setVisibleMovies(MOVIES_PER_PAGE_MEDIUM);
+                } else if (window.innerWidth >= SCREEN_BREAKPOINT_SMALL) {
+                    setVisibleMovies(MOVIES_PER_PAGE_SMALL);
                 }
             }, 300);
         }
@@ -34,13 +44,13 @@ function MoviesCardList(props) {
     }, []);
 
     function handleShowMore() {
-        setVisibleMovies(visibleMovies => visibleMovies + 3)
-        if (window.innerWidth >= 1280) {
-            setVisibleMovies(visibleMovies + 3);
-        } else if (window.innerWidth >= 768) {
-            setVisibleMovies(visibleMovies + 2);
-        } else if (window.innerWidth >= 320) {
-            setVisibleMovies(visibleMovies + 1);
+        setVisibleMovies(visibleMovies => visibleMovies + MOVIES_ADD_THREE)
+        if (window.innerWidth >= SCREEN_BREAKPOINT_LARGE) {
+            setVisibleMovies(visibleMovies + MOVIES_ADD_THREE);
+        } else if (window.innerWidth >= SCREEN_BREAKPOINT_MEDIUM) {
+            setVisibleMovies(visibleMovies + MOVIES_ADD_TWO);
+        } else if (window.innerWidth >= SCREEN_BREAKPOINT_SMALL) {
+            setVisibleMovies(visibleMovies + MOVIES_ADD_TWO);
         }
     }
 
