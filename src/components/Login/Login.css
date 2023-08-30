@@ -56,6 +56,21 @@
     cursor: pointer;
 }
 
+.login__save-button_inactive {
+    min-width: 396px;
+    min-height: 45px;
+    margin: 179px 0 16px;
+    border-radius: 3px;
+    background: #3456F3;
+    border: none;
+    color: #C2C2C2;;
+    font-size: 14px;
+    font-weight: 500;
+    pointer-events: none; /* Запрет клика по кнопке */
+    cursor: not-allowed;
+    background: #F8F8F8;;
+}
+
 .login__to-login {
     display: block;
     text-align: center;
@@ -67,6 +82,21 @@
 
 .login__login-blue {
     color: #3456F3;
+}
+
+.login__error {
+    position: absolute;
+    margin: 0;
+    line-height: 10px;
+    max-width: 395px;
+}
+
+.login__request-error{
+    font-size: 11px;
+    margin-top: -86px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 @media screen and (max-width:1000px) {
@@ -107,7 +137,21 @@
         margin: 267px auto 14px;
     }
 
+    .login__save-button,
+    .login__save-button_inactive {
+        min-width: 260px;
+        font-size: 12px;
+        margin: 179px auto 14px;
+    }
+
     .login__to-login {
         font-size: 12px;
+    }
+
+    .login__error {
+        min-width: 260px;
+        font-size: 10px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

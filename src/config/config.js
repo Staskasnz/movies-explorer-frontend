@@ -1,0 +1,9 @@
+export const SHORT_FILM_DURATION = 40;
+export const MOVIES_PER_PAGE_SMALL = 5;
+export const MOVIES_PER_PAGE_MEDIUM = 8;
+export const MOVIES_PER_PAGE_LARGE = 12;
+export const SCREEN_BREAKPOINT_SMALL = 320;
+export const SCREEN_BREAKPOINT_MEDIUM = 768;
+export const SCREEN_BREAKPOINT_LARGE = 1280;
+export const MOVIES_ADD_TWO = 2;
+export const MOVIES_ADD_THREE = 3;

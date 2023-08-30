@@ -26,6 +26,9 @@
     font-weight: 400;
     line-height: normal;
     text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 @media screen and (max-width:1000px) {

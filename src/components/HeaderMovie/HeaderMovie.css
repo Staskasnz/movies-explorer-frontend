@@ -5,6 +5,18 @@
     align-items: center;
 }
 
+.header-movie_dark {
+    min-height: 74px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #073042;
+    margin-left: -70px;
+    margin-right: -70px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
 .header-movie__account-container {
     display: flex;
     align-items: center;
@@ -47,6 +59,12 @@
     line-height: 18px;
     color: #000;
     text-decoration: none;
+}
+
+.header-movie__saved-movies_white,
+.header-movie__movies_white,
+.header-movie__account-link_white {
+    color: #FFFFFF;
 }
 
 .header-movie__saved-movies_active,

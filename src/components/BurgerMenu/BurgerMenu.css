@@ -28,6 +28,10 @@
     stroke-linecap: round;
 }
 
+.line_white {
+    stroke: #8b8b8b;
+}
+
 .burger__top {
     stroke-dasharray: 40 160;
 }

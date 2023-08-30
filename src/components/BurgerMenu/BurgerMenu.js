@@ -11,9 +11,9 @@ function BurgerMenu({ isMenuOpen, handleMenuToggle }) {
         <div className='burger'>
             <div className={`burger__overlay-color ${isMenuOpen ? 'burger__overlay-color_active' : ''}`}></div>
             <svg className={`burger__button button ${isMenuOpen ? 'rotate' : ''}`} viewBox="0 0 100 100" onClick={handleMenuToggle}>
-                <path className={`line burger__top ${isMenuOpen ? 'burger__top_active' : ''}`} d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
-                <path className={`line burger__middle ${isMenuOpen ? 'burger__middle_active' : ''}`} d="m 30,50 h 40" />
-                <path className={`line burger__bottom ${isMenuOpen ? 'burger__bottom_active' : ''}`} d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />
+                <path className={`line ${location.pathname === '/' && 'line_white'} burger__top ${isMenuOpen ? 'burger__top_active' : ''}`} d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20" />
+                <path className={`line ${location.pathname === '/' && 'line_white'} burger__middle ${isMenuOpen ? 'burger__middle_active' : ''}`} d="m 30,50 h 40" />
+                <path className={`line ${location.pathname === '/' && 'line_white'} burger__bottom ${isMenuOpen ? 'burger__bottom_active' : ''}`} d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20" />
             </svg>
             <div className={`burger__overlay ${isMenuOpen ? 'burger__overlay_active' : ''}`}>
                 <nav className={`burger__menu ${isMenuOpen ? 'burger__menu-open' : ''}`}>

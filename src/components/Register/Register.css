@@ -24,7 +24,9 @@
     line-height: normal;
 }
 
-.register__form {}
+.register__form {
+    display: block;
+}
 
 .register__input {
     border-radius: 8px;
@@ -56,6 +58,21 @@
     cursor: pointer;
 }
 
+.register__save-button_inactive {
+    min-width: 396px;
+    min-height: 45px;
+    margin: 91px 0 16px;
+    border-radius: 3px;
+    background: #3456F3;
+    border: none;
+    color: #C2C2C2;;
+    font-size: 14px;
+    font-weight: 500;
+    pointer-events: none; /* Запрет клика по кнопке */
+    cursor: not-allowed;
+    background: #F8F8F8;;
+}
+
 .register__to-login {
     display: block;
     text-align: center;
@@ -67,6 +84,21 @@
 
 .register__login-blue {
     color: #3456F3;
+}
+
+.register__error {
+    position: absolute;
+    margin: 0;
+    line-height: 10px;
+    max-width: 395px;
+}
+
+.register__request-error{
+    font-size: 11px;
+    margin-top: -86px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 @media screen and (max-width:1000px) {
@@ -102,7 +134,8 @@
         margin-bottom: 80px;
     }
 
-    .register__save-button {
+    .register__save-button,
+    .register__save-button_inactive {
         min-width: 260px;
         font-size: 12px;
         margin: 179px auto 14px;
@@ -110,5 +143,12 @@
 
     .register__to-login {
         font-size: 12px;
+    }
+
+    .register__error {
+        min-width: 260px;
+        font-size: 10px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }

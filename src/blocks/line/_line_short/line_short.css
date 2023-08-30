@@ -1,5 +1,6 @@
 .line_short {
     min-width: 410px;
+    margin-bottom: 17px;
 }
 
 @media screen and (max-width:560px) {

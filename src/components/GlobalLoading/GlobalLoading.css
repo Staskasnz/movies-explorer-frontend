@@ -1,0 +1,19 @@
+.global-loading {
+    height: 30px;
+    width: 30px;
+    margin: 35vh auto;
+    border: 5px solid rgb(43, 224, 128, 0.5);
+    border-top: 4px solid rgb(43, 224, 128);
+    border-radius: 50%;
+    animation: rotate 0.8s infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
